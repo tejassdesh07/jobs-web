@@ -15,7 +15,7 @@ const SignJobDetails = () => {
   };
 
   return (
-    <div className="gap-x-[20px] max-w-[1400px] mx-auto">
+    <div className="gap-x-[20px]">
       <div className="inset-0 flex items-center justify-center mt-[50px]">
         <div className="rounded-lg p-6 w-full relative">
           <button className="absolute top-4 right-4 text-gray-600 hover:text-gray-900">

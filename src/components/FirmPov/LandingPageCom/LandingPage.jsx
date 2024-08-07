@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Button from "../../Button";
-import { NavLink } from "react-router-dom";
-
+Button;
 const LandingPage = () => {
   const [email, setEmail] = useState("");
 
@@ -17,7 +16,7 @@ const LandingPage = () => {
           <br className="max-md:hidden" /> candidates in{" "}
           <span className="text-[#007A7E] font-bold">minutes</span>
         </h1>
-        <form className="mt-[70px] w-full max-md:mt-[30px] flex  flex-col  lg:flex-row justify-center gap-y-[20px] gap-x-[20px]  ">
+        <form className="mt-[70px] w-full  max-md:mt-[30px] flex  flex-col  lg:flex-row justify-center gap-y-[20px] gap-x-[20px]  ">
           <input
             type="email"
             placeholder="What's your email?"
@@ -26,12 +25,7 @@ const LandingPage = () => {
             required
             className=" w-full md:w-[472px] lg:px-6 md:px-4 px-3  lg:py-3 py-2 border rounded-[30px] border-gray-300 focus:outline-none focus:ring-2 focus:ring-color-green"
           />
-          <NavLink
-            className="px-5 py-2 whitespace-nowrap border rounded-[15px] shadow-md text-[14px] font-medium text-center flex items-center justify-center text-white bg-[#007A7E]"
-            to="/signup_one"
-          >
-            Get Started
-          </NavLink>
+          <Button to="/signup_one">Get Started</Button>
         </form>
       </main>
     </div>

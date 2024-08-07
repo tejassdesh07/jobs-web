@@ -39,11 +39,11 @@ const JobDetails = () => {
               ></path>
             </svg>
           </Link>
-          <h2 className="text-[32px] font-bold text-color-green inter mb-4">
+          <h2 className="text-[38px] font-bold text-color-green inter mb-4">
             Job Details in
           </h2>
           <div className="mb-4">
-            <h3 className="text-[20px] inter font-medium">Job Title</h3>
+            <h3 className="text-[22px] inter font-medium">Job Title</h3>
             <input
               type="text"
               name="jobTitle"
@@ -53,7 +53,7 @@ const JobDetails = () => {
             />
           </div>
           <div>
-            <h3 className="text-[20px] inter font-medium">Job Description</h3>
+            <h3 className="text-[22px] inter font-medium">Job Description</h3>
             <textarea
               name="jobDescription"
               value={formData.jobDescription}

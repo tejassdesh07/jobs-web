@@ -1,4 +1,1 @@
-# Ignore all files in the .gitignore file
-
-/.gitignore
-/node_modules
+/node_modules  

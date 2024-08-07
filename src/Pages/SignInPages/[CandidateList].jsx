@@ -1,40 +1,212 @@
-import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { IoMdArrowBack } from 'react-icons/io';
-import { IoToggle } from 'react-icons/io5';
+import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { IoMdArrowBack } from "react-icons/io";
 
 export const candidates = [
-  { name: "Katherine Feng", date: "July 28, 2024", status: "Pending", slug: "katherine-feng", jobSlug: "senior-product-developer" },
-  { name: "John Doe", date: "July 28, 2024", status: "Pending", slug: "john-doe", jobSlug: "senior-product-developer" },
-  { name: "Mary Jane", date: "July 28, 2024", status: "Pending", slug: "mary-jane", jobSlug: "success-manager-developer" },
-  { name: "Sahil Seth", date: "July 28, 2024", status: "Pending", slug: "sahil-seth", jobSlug: "community-programme-manager" },
-  { name: "Xavier Dun", date: "July 28, 2024", status: "Pending", slug: "xavier-dun", jobSlug: "senior-product-developer" },
-  { name: "Sage Rogers", date: "July 27, 2024", status: "Pending", slug: "sage-rogers", jobSlug: "senior-product-developer" },
-  { name: "Jackson Liu", date: "July 27, 2024", status: "Pending", slug: "jackson-liu", jobSlug: "senior-product-developer" },
-  { name: "Emily Clark", date: "July 27, 2024", status: "Pending", slug: "emily-clark", jobSlug: "senior-product-developer" },
-  { name: "Zachary Aldenburg", date: "July 27, 2024", status: "Pending", slug: "zachary-aldenburg", jobSlug: "senior-product-developer" },
-  { name: "Lorita Schuster", date: "July 26, 2024", status: "Pending", slug: "lorita-schuster", jobSlug: "senior-product-developer" },
-  { name: "Michael Brown", date: "July 26, 2024", status: "Pending", slug: "michael-brown", jobSlug: "senior-product-developer" },
-  { name: "Jessica Smith", date: "July 25, 2024", status: "Pending", slug: "jessica-smith", jobSlug: "success-manager-developer" },
-  { name: "David Johnson", date: "July 25, 2024", status: "Pending", slug: "david-johnson", jobSlug: "community-programme-manager" },
-  { name: "Sarah Williams", date: "July 24, 2024", status: "Pending", slug: "sarah-williams", jobSlug: "senior-product-developer" },
-  { name: "James Brown", date: "July 24, 2024", status: "Pending", slug: "james-brown", jobSlug: "senior-product-developer" },
-  { name: "Patricia Garcia", date: "July 23, 2024", status: "Pending", slug: "patricia-garcia", jobSlug: "success-manager-developer" },
-  { name: "Robert Martinez", date: "July 23, 2024", status: "Pending", slug: "robert-martinez", jobSlug: "community-programme-manager" },
-  { name: "Linda Rodriguez", date: "July 22, 2024", status: "Pending", slug: "linda-rodriguez", jobSlug: "senior-product-developer" },
-  { name: "William Hernandez", date: "July 22, 2024", status: "Pending", slug: "william-hernandez", jobSlug: "senior-product-developer" },
-  { name: "Barbara Wilson", date: "July 21, 2024", status: "Pending", slug: "barbara-wilson", jobSlug: "success-manager-developer" },
-  { name: "Richard Moore", date: "July 21, 2024", status: "Pending", slug: "richard-moore", jobSlug: "community-programme-manager" },
-  { name: "Susan Taylor", date: "July 20, 2024", status: "Pending", slug: "susan-taylor", jobSlug: "senior-product-developer" },
-  { name: "Joseph Anderson", date: "July 20, 2024", status: "Pending", slug: "joseph-anderson", jobSlug: "senior-product-developer" },
-  { name: "Margaret Thomas", date: "July 19, 2024", status: "Pending", slug: "margaret-thomas", jobSlug: "success-manager-developer" },
-  { name: "Charles Jackson", date: "July 19, 2024", status: "Pending", slug: "charles-jackson", jobSlug: "community-programme-manager" },
-  { name: "Dorothy White", date: "July 18, 2024", status: "Pending", slug: "dorothy-white", jobSlug: "senior-product-developer" },
-  { name: "Christopher Harris", date: "July 18, 2024", status: "Pending", slug: "christopher-harris", jobSlug: "senior-product-developer" },
-  { name: "Karen Martin", date: "July 17, 2024", status: "Pending", slug: "karen-martin", jobSlug: "success-manager-developer" },
-  { name: "Matthew Thompson", date: "July 17, 2024", status: "Pending", slug: "matthew-thompson", jobSlug: "community-programme-manager" },
+  {
+    name: "Katherine Feng",
+    date: "July 28, 2024",
+    status: "Pending",
+    slug: "katherine-feng",
+    jobSlug: "senior-product-developer",
+  },
+  {
+    name: "John Doe",
+    date: "July 28, 2024",
+    status: "Pending",
+    slug: "john-doe",
+    jobSlug: "senior-product-developer",
+  },
+  {
+    name: "Mary Jane",
+    date: "July 28, 2024",
+    status: "Pending",
+    slug: "mary-jane",
+    jobSlug: "success-manager-developer",
+  },
+  {
+    name: "Sahil Seth",
+    date: "July 28, 2024",
+    status: "Pending",
+    slug: "sahil-seth",
+    jobSlug: "community-programme-manager",
+  },
+  {
+    name: "Xavier Dun",
+    date: "July 28, 2024",
+    status: "Pending",
+    slug: "xavier-dun",
+    jobSlug: "senior-product-developer",
+  },
+  {
+    name: "Sage Rogers",
+    date: "July 27, 2024",
+    status: "Pending",
+    slug: "sage-rogers",
+    jobSlug: "senior-product-developer",
+  },
+  {
+    name: "Jackson Liu",
+    date: "July 27, 2024",
+    status: "Pending",
+    slug: "jackson-liu",
+    jobSlug: "senior-product-developer",
+  },
+  {
+    name: "Emily Clark",
+    date: "July 27, 2024",
+    status: "Pending",
+    slug: "emily-clark",
+    jobSlug: "senior-product-developer",
+  },
+  {
+    name: "Zachary Aldenburg",
+    date: "July 27, 2024",
+    status: "Pending",
+    slug: "zachary-aldenburg",
+    jobSlug: "senior-product-developer",
+  },
+  {
+    name: "Lorita Schuster",
+    date: "July 26, 2024",
+    status: "Pending",
+    slug: "lorita-schuster",
+    jobSlug: "senior-product-developer",
+  },
+  {
+    name: "Michael Brown",
+    date: "July 26, 2024",
+    status: "Pending",
+    slug: "michael-brown",
+    jobSlug: "senior-product-developer",
+  },
+  {
+    name: "Jessica Smith",
+    date: "July 25, 2024",
+    status: "Pending",
+    slug: "jessica-smith",
+    jobSlug: "success-manager-developer",
+  },
+  {
+    name: "David Johnson",
+    date: "July 25, 2024",
+    status: "Pending",
+    slug: "david-johnson",
+    jobSlug: "community-programme-manager",
+  },
+  {
+    name: "Sarah Williams",
+    date: "July 24, 2024",
+    status: "Pending",
+    slug: "sarah-williams",
+    jobSlug: "senior-product-developer",
+  },
+  {
+    name: "James Brown",
+    date: "July 24, 2024",
+    status: "Pending",
+    slug: "james-brown",
+    jobSlug: "senior-product-developer",
+  },
+  {
+    name: "Patricia Garcia",
+    date: "July 23, 2024",
+    status: "Pending",
+    slug: "patricia-garcia",
+    jobSlug: "success-manager-developer",
+  },
+  {
+    name: "Robert Martinez",
+    date: "July 23, 2024",
+    status: "Pending",
+    slug: "robert-martinez",
+    jobSlug: "community-programme-manager",
+  },
+  {
+    name: "Linda Rodriguez",
+    date: "July 22, 2024",
+    status: "Pending",
+    slug: "linda-rodriguez",
+    jobSlug: "senior-product-developer",
+  },
+  {
+    name: "William Hernandez",
+    date: "July 22, 2024",
+    status: "Pending",
+    slug: "william-hernandez",
+    jobSlug: "senior-product-developer",
+  },
+  {
+    name: "Barbara Wilson",
+    date: "July 21, 2024",
+    status: "Pending",
+    slug: "barbara-wilson",
+    jobSlug: "success-manager-developer",
+  },
+  {
+    name: "Richard Moore",
+    date: "July 21, 2024",
+    status: "Pending",
+    slug: "richard-moore",
+    jobSlug: "community-programme-manager",
+  },
+  {
+    name: "Susan Taylor",
+    date: "July 20, 2024",
+    status: "Pending",
+    slug: "susan-taylor",
+    jobSlug: "senior-product-developer",
+  },
+  {
+    name: "Joseph Anderson",
+    date: "July 20, 2024",
+    status: "Pending",
+    slug: "joseph-anderson",
+    jobSlug: "senior-product-developer",
+  },
+  {
+    name: "Margaret Thomas",
+    date: "July 19, 2024",
+    status: "Pending",
+    slug: "margaret-thomas",
+    jobSlug: "success-manager-developer",
+  },
+  {
+    name: "Charles Jackson",
+    date: "July 19, 2024",
+    status: "Pending",
+    slug: "charles-jackson",
+    jobSlug: "community-programme-manager",
+  },
+  {
+    name: "Dorothy White",
+    date: "July 18, 2024",
+    status: "Pending",
+    slug: "dorothy-white",
+    jobSlug: "senior-product-developer",
+  },
+  {
+    name: "Christopher Harris",
+    date: "July 18, 2024",
+    status: "Pending",
+    slug: "christopher-harris",
+    jobSlug: "senior-product-developer",
+  },
+  {
+    name: "Karen Martin",
+    date: "July 17, 2024",
+    status: "Pending",
+    slug: "karen-martin",
+    jobSlug: "success-manager-developer",
+  },
+  {
+    name: "Matthew Thompson",
+    date: "July 17, 2024",
+    status: "Pending",
+    slug: "matthew-thompson",
+    jobSlug: "community-programme-manager",
+  },
 ];
-
 
 const TrNavLink = ({ to, children, className }) => {
   const navigate = useNavigate();
@@ -105,16 +277,18 @@ const CandidateList = () => {
   const getStatusBgColor = (status) => {
     switch (status) {
       case "Selected":
-        return "bg-green-500";
+        return "bg-[#85BFC1]";
       case "Rejected":
-        return "bg-red-500";
+        return "bg-[#85BFC1]";
       case "Pending":
       default:
-        return "bg-yellow-200";
+        return "bg-[#85BFC1]";
     }
   };
 
-  const filteredCandidates = candidates.filter(candidate => candidate.jobSlug === jobSlug);
+  const filteredCandidates = candidates.filter(
+    (candidate) => candidate.jobSlug === jobSlug
+  );
 
   return (
     <div className="mx-auto p-4 relative px-[100px] max-md:px-4">
@@ -122,18 +296,27 @@ const CandidateList = () => {
         <div className="w-full md:w-3/4 max-w-[1200px] mx-auto">
           <header className="flex justify-between items-center py-4 max-w-[1200px] mx-auto">
             <div className="flex gap-x-[20px] items-center ">
-              <IoMdArrowBack className="text-4xl cursor-pointer -ml-16" onClick={() => navigate(-1)} />
+              <IoMdArrowBack
+                className="text-4xl cursor-pointer -ml-16"
+                onClick={() => navigate(-1)}
+              />
               <h1 className="text-[25px] sm:text-[30px] md:text-[36px] inter font-bold color-black ">
-                Candidates for {jobSlug.replace(/-/g, ' ')}
+                Candidates for {jobSlug.replace(/-/g, " ")}
               </h1>
             </div>
           </header>
           <table className="min-w-full bg-white">
             <thead>
               <tr>
-                <th className="py-2 px-4 text-start border-gray-200">Candidate</th>
-                <th className="py-2 px-4 text-start border-b border-gray-200">Interview Date</th>
-                <th className="py-2 px-4 text-start border-b border-gray-200">Status</th>
+                <th className="py-2 px-4 text-start border-gray-200">
+                  Candidate
+                </th>
+                <th className="py-2 px-4 text-start border-b border-gray-200">
+                  Interview Date
+                </th>
+                <th className="py-2 px-4 text-start border-b border-gray-200">
+                  Status
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -142,13 +325,24 @@ const CandidateList = () => {
                   key={index}
                   className="text-center bg-[#d9ebec] hover:bg-[#85bfc1]"
                 >
-                  <TrNavLink to={`/candidate/${candidate.slug}`} className="block cursor-pointer py-3 px-4 text-start border-b border-solid border-white">{candidate.name}</TrNavLink>
-                  <td className="py-2 px-4 text-start border-b border-solid border-white">{candidate.date}</td>
+                  <TrNavLink
+                    to={`/candidate/${candidate.slug}`}
+                    className="block cursor-pointer py-3 px-4 text-start border-b border-solid border-white"
+                  >
+                    {candidate.name}
+                  </TrNavLink>
+                  <td className="py-2 px-4 text-start border-b border-solid border-white">
+                    {candidate.date}
+                  </td>
                   <td className="py-2 px-4 text-start border-b border-solid border-white">
                     <select
                       value={candidateStatuses[candidate.slug]}
-                      onChange={(e) => handleStatusChange(candidate.slug, e.target.value)}
-                      className={`flex sm:inline-block px-3 py-1 text-sm font-semibold text-gray-700 rounded-full ${getStatusBgColor(candidateStatuses[candidate.slug])}`}
+                      onChange={(e) =>
+                        handleStatusChange(candidate.slug, e.target.value)
+                      }
+                      className={`flex sm:inline-block cursor-pointer px-3 py-1 text-sm font-semibold text-gray-700 rounded-full ${getStatusBgColor(
+                        candidateStatuses[candidate.slug]
+                      )}`}
                     >
                       <option value="Pending">Pending</option>
                       <option value="Selected">Selected</option>
@@ -166,22 +360,32 @@ const CandidateList = () => {
             <nav>
               <ul className="flex space-x-2">
                 <li>
-                  <a href="#" className="px-3 py-1 bg-gray-200 rounded">1</a>
+                  <a href="#" className="px-3 py-1 bg-gray-200 rounded">
+                    1
+                  </a>
                 </li>
                 <li>
-                  <a href="#" className="px-3 py-1 bg-gray-200 rounded">2</a>
+                  <a href="#" className="px-3 py-1 bg-gray-200 rounded">
+                    2
+                  </a>
                 </li>
                 <li>
-                  <a href="#" className="px-3 py-1 bg-gray-200 rounded">3</a>
+                  <a href="#" className="px-3 py-1 bg-gray-200 rounded">
+                    3
+                  </a>
                 </li>
                 <li>
-                  <a href="#" className="px-3 py-1 bg-gray-200 rounded">4</a>
+                  <a href="#" className="px-3 py-1 bg-gray-200 rounded">
+                    4
+                  </a>
                 </li>
                 <li>
                   <span>...</span>
                 </li>
                 <li>
-                  <a href="#" className="px-3 py-1 bg-gray-200 rounded">24</a>
+                  <a href="#" className="px-3 py-1 bg-gray-200 rounded">
+                    24
+                  </a>
                 </li>
               </ul>
             </nav>
@@ -196,7 +400,13 @@ const CandidateList = () => {
               <button className="lato font-bold text-[14px] mt-[20px] color-black flex items-center gap-x-[5px]">
                 View Pluto candidate pool
                 <span>
-                  <IoToggle className="text-[40px]" />
+                  <input
+                    className="mr-2 mt-[0.3rem] h-3.5 w-8 appearance-none rounded-[0.4375rem] bg-neutral-300 before:pointer-events-none before:absolute before:h-3.5 before:w-3.5 before:rounded-full before:bg-transparent before:content-[''] after:absolute after:z-[2] after:-mt-[0.1875rem] after:h-5 after:w-5 after:rounded-full after:border-none after:bg-neutral-100 after:shadow-[0_0px_3px_0_rgb(0_0_0_/_7%),_0_2px_2px_0_rgb(0_0_0_/_4%)] after:transition-[background-color_0.2s,transform_0.2s] after:content-[''] checked:bg-primary checked:after:absolute checked:after:z-[2] checked:after:-mt-[3px] checked:after:ml-[1.0625rem] checked:after:h-5 checked:after:w-5 checked:after:rounded-full checked:after:border-none checked:after:bg-primary checked:after:shadow-[0_3px_1px_-2px_rgba(0,0,0,0.2),_0_2px_2px_0_rgba(0,0,0,0.14),_0_1px_5px_0_rgba(0,0,0,0.12)] checked:after:transition-[background-color_0.2s,transform_0.2s] checked:after:content-[''] hover:cursor-pointer focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[3px_-1px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-5 focus:after:w-5 focus:after:rounded-full focus:after:content-[''] checked:focus:border-primary checked:focus:bg-primary checked:focus:before:ml-[1.0625rem] checked:focus:before:scale-100 checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:bg-neutral-600 dark:after:bg-neutral-400 dark:checked:bg-primary dark:checked:after:bg-primary dark:focus:before:shadow-[3px_-1px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca]"
+                    type="checkbox"
+                    role="switch"
+                    id="flexSwitchChecked"
+                    defaultChecked
+                  />
                 </span>
               </button>
               <form onSubmit={handleSubmit} className="p-4 rounded-lg w-full">
