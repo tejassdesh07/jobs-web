@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect  } from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../../Logo";
 import Button from "../../Button";
@@ -11,7 +11,8 @@ const EnterprisePlan = () => {
     location: "",
     industry: "",
   });
-
+  const industryOptions = ["Technology", "Healthcare", "Finance", "Education", "Manufacturing"];
+  const [industry, setIndustry] = useState("");
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -19,7 +20,10 @@ const EnterprisePlan = () => {
       [name]: value,
     });
   };
-
+  const handleIndustryChange = (event) => {
+    setIndustry(event.target.value);
+  };
+  
   return (
     <>
       <div className="max-w-[1500px] px-[20px] sm:px-[40px] lg:px-[60px] mx-auto mt-[40px]  flex items-center justify-center">
@@ -103,12 +107,26 @@ const EnterprisePlan = () => {
                   <label className="block color-black lato text-[16px]">
                     Industry
                   </label>
+                  <select
+                    name="text"
+                    value={industry}
+                    onChange={handleIndustryChange}
+                    className="mt-1 p-2 w-full border bg-[#D9EBEC] rounded-[24px] outline-none"
+                  >
+                      <option value="" disabled>Select an industry</option>
+
+                    {industryOptions.map((option, index) => (
+                      <option key={index} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
                   <input
                     type="text"
                     name="industry"
                     value={formData.industry}
                     onChange={handleChange}
-                    className="mt-1 p-2 w-full border bg-[#D9EBEC] rounded-[24px] outline-none"
+
                   />
                 </div>
               </div>

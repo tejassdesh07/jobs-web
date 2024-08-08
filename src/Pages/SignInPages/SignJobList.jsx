@@ -52,7 +52,7 @@ const SignInJobList = () => {
         {jobs.map((job, index) => (
           <div
             key={index}
-            className="flex gap-x-[30px] justify-between items-center mt-[15px] p-[20px] text-title  lato font-bold bg-[#dbeced] transition-all hover:bg-[#85bfc1] cursor-pointer"
+            className="flex gap-x-[30px] justify-between items-center  p-[20px] text-title  lato font-bold bg-[#dbeced] transition-all hover:bg-[#85bfc1] cursor-pointer"
             onClick={() => handleJobClick(job.slug)}
           >
             <h5 className="w-[350px]">{job.title}</h5>

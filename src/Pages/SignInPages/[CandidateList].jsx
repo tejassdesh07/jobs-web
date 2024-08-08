@@ -75,6 +75,11 @@ const CandidateList = () => {
       [name]: type === "checkbox" ? checked : value,
     }));
   };
+  const [isToggled, setIsToggled] = useState(false); // State for toggle
+
+  const handleToggle = () => {
+    setIsToggled((prev) => !prev);
+  };
 
   const handleStatusChange = (slug, newStatus) => {
     setCandidateStatuses((prev) => ({
@@ -193,10 +198,13 @@ const CandidateList = () => {
               <a href="#" className="text-blue-500 ">
                 Edit job details
               </a>
-              <button className="lato font-bold text-[14px] mt-[20px] color-black flex items-center gap-x-[5px]">
+              <button
+                onClick={handleToggle}
+                className="lato font-bold text-[14px] mt-[20px] color-black flex items-center gap-x-[5px]"
+              >
                 View Pluto candidate pool
                 <span>
-                  <IoToggle className="text-[40px]" />
+                  <IoToggle className={`text-[40px] ${isToggled ? 'rotate-180' : ''}`} />
                 </span>
               </button>
               <form onSubmit={handleSubmit} className="p-4 rounded-lg w-full">

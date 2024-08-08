@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState,  useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FaArrowLeft, FaCaretDown } from 'react-icons/fa';
 import { MdOutlineMail } from 'react-icons/md';
@@ -6,7 +6,7 @@ import { IoMdArrowBack, IoMdDownload } from 'react-icons/io';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 
 const candidates = [
-  
+
   {
     id: 1,
     name: "Katherine Feng",
@@ -284,28 +284,76 @@ const candidates = [
   }
   // Add more candidates as needed
 ];
-
+const randomAudioFiles = [
+  "https://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3",
+];
 
 function CandidateDetail() {
   const navigate = useNavigate();
   const { slug } = useParams();
   const candidate = candidates.find(c => c.slug === slug);
+  const statusOptions = ["Pending", "In Progress", "Completed", "Rejected"];
+  const [status, setStatus] = useState(candidate ? candidate.status : "Pending");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isTranscriptOpen, setIsTranscriptOpen] = useState(false);
+  const [audioUrl, setAudioUrl] = useState(randomAudioFiles[0]);
+  const [currentTime, setCurrentTime] = useState('0:00');
+  const audioRef = useRef(null);
+
+  // Function to update the current time display
 
   if (!candidate) {
-    return <div><IoMdArrowBack className="text-4xl cursor-pointer max-md:text-[20px] max-md:ml-6" onClick={() => navigate(-1)} /> <div className='flex items-center justify-center h-[60vh]'><h1>Candidate not found</h1></div></div> ;
+    return <div><IoMdArrowBack className="text-4xl cursor-pointer max-md:text-[20px] max-md:ml-6" onClick={() => navigate(-1)} /> <div className='flex items-center justify-center h-[60vh]'><h1>Candidate not found</h1></div></div>;
   }
+  const handleStatusChange = (event) => {
+    setStatus(event.target.value);
+  };
+
+  const toggleTranscript = () => setIsTranscriptOpen(prev => !prev);
+
+  const updateCurrentTime = () => {
+    if (audioRef.current) {
+      const minutes = Math.floor(audioRef.current.currentTime / 60);
+      const seconds = Math.floor(audioRef.current.currentTime % 60);
+      setCurrentTime(`${minutes}:${seconds < 10 ? '0' : ''}${seconds}`);
+    }
+  };
+
+  // Update the current time every second
+  useEffect(() => {
+    const timer = setInterval(updateCurrentTime, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Optional: Change audio file every 10 seconds or on some condition
+  useEffect(() => {
+    const randomIndex = Math.floor(Math.random() * randomAudioFiles.length);
+    setAudioUrl(randomAudioFiles[randomIndex]);
+  }, []); // Add dependencies if needed
+
   return (
     <div className="container mx-auto p-4">
       <div className="flex flex-wrap lg:flex-nowrap space-x-4 mb-4">
         <div className="w-full lg:w-3/4 flex flex-col space-y-4">
           <header className="flex gap-4 items-center py-4">
-          <IoMdArrowBack className="text-4xl cursor-pointer" onClick={() => navigate(-1)} />
+            <IoMdArrowBack className="text-4xl cursor-pointer" onClick={() => navigate(-1)} />
             <h1 className="text-[36px] font-bold inter color-black">
               {candidate.name}
             </h1>
-            <span className="inline-block px-3 py-1 text-sm font-semibold text-gray-700 bg-[#90c4c7] rounded-full">
-              {candidate.status}
-              <FaCaretDown className="ms-[20px] inline-block" />
+            <span className="relative inline-block">
+              <select
+                name="candidateMatch"
+                value={status}
+                onChange={handleStatusChange}
+                className="px-3 py-1 text-sm font-semibold text-gray-700 bg-[#90c4c7] rounded-full appearance-none pr-8"
+              >
+                {statusOptions.map((option, index) => (
+                  <option key={index} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+              <FaCaretDown className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-700 pointer-events-none" />
             </span>
           </header>
           <div className="flex max-md:flex-wrap gap-y-[30px] space-x-4 mb-4">
@@ -320,6 +368,13 @@ function CandidateDetail() {
             </button>
           </div>
           <div className="flex items-center max-md:w-[88vw] space-x-4 border p-2 shadow-lg w-fit rounded-[30px]">
+            <audio ref={audioRef} controls>
+              <source src={audioUrl} type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
+            <span className="text-sm">{currentTime}</span>
+          </div>
+          {/* <div className="flex items-center max-md:w-[88vw] space-x-4 border p-2 shadow-lg w-fit rounded-[30px]">
             <audio controls>
               <source
                 src="https://www.soundjay.com/button/beep-01a.mp3"
@@ -328,10 +383,21 @@ function CandidateDetail() {
               Your browser does not support the audio element.
             </audio>
             <span className="text-sm">0:02</span>
-          </div>
-          <div className="bg-[#90c4c7] text-gray-700 py-2 px-4 rounded-full mb-4 flex items-center justify-between">
-            View Transcript
-            <span><FaCaretDown /></span>
+          </div> */}
+          <div className="relative mb-4">
+            <div
+              className="bg-[#90c4c7] text-gray-700 py-2 px-4 rounded-full flex items-center justify-between cursor-pointer"
+              onClick={toggleTranscript}
+            >
+              View Transcript
+              <span><FaCaretDown className={`transition-transform ${isTranscriptOpen ? 'rotate-180' : ''}`} /></span>
+            </div>
+            {isTranscriptOpen && (
+              <div className="absolute top-full left-0 bg-[#F9FFFF] border border-[#D9D9D9] p-4 rounded shadow-md max-h-[300px] overflow-y-auto z-10 mt-2 w-full">
+                <h3 className="font-bold mb-2">Transcript</h3>
+                <p className="text-gray-700">Here is some random text for the transcript. This is just placeholder text to demonstrate scrolling functionality in the dropdown. You can replace this with the actual transcript content you want to display.Here is some random text for the transcript. This is just placeholder text to demonstrate scrolling functionality in the dropdown. You can replace this with the actual transcript content you want to display.Here is some random text for the transcript. This is just placeholder text to demonstrate scrolling functionality in the dropdown. You can replace this with the actual transcript content you want to display.Here is some random text for the transcript. This is just placeholder text to demonstrate scrolling functionality in the dropdown. You can replace this with the actual transcript content you want to display.Here is some random text for the transcript. This is just placeholder text to demonstrate scrolling functionality in the dropdown. You can replace this with the actual transcript content you want to display.Here is some random text for the transcript. This is just placeholder text to demonstrate scrolling functionality in the dropdown. You can replace this with the actual transcript content you want to display.Here is some random text for the transcript. This is just placeholder text to demonstrate scrolling functionality in the dropdown. You can replace this with the actual transcript content you want to display.Here is some random text for the transcript. This is just placeholder text to demonstrate scrolling functionality in the dropdown. You can replace this with the actual transcript content you want to display.Here is some random text for the transcript. This is just placeholder text to demonstrate scrolling functionality in the dropdown. You can replace this with the actual transcript content you want to display.Here is some random text for the transcript. This is just placeholder text to demonstrate scrolling functionality in the dropdown. You can replace this with the actual transcript content you want to display.</p>
+              </div>
+            )}
           </div>
           <div className="bg-[#F9FFFF] border border-[#D9D9D9] p-4 rounded shadow mb-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -388,5 +454,4 @@ function CandidateDetail() {
     </div>
   );
 }
-
 export default CandidateDetail;

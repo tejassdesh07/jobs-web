@@ -36,8 +36,8 @@ const SignInJobListingsTwo = () => {
       <div className=""> {/* Adjust width if necessary */}</div>
       <div className="flex flex-col w-full p-6 bg-white rounded-lg mx-auto">
         <h2 className="font-extrabold color-green text-[55px] lato">
-          Job Listings
-        </h2>
+          Job Listings  
+        </h2> 
         <p className="text-[24px] lato font-medium text-black">
           You can use this page to add, modify, or view jobs.
         </p>
