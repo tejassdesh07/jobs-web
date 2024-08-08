@@ -18,43 +18,44 @@ const DiveDeeper = () => {
   };
 
   return (
-    <div className="max-w-[1200px] px-[10px] sm:px-[20px] lg:px-[30px] mx-auto h-[80vh] lg:h-[80vh] max-md:h-[75vh] flex items-center justify-center">
+    <div className="max-w-[1500px] px-[20px] sm:px-[40px] lg:px-[60px] mx-auto  flex items-center justify-center">
       {/* <Logo /> */}
-      <div className="flex flex-col md:p-4 w-full">
-        <div className="px-4">
-          <h2 className="font-lato font-[700] text-[28px] sm:text-[32px] md:text-[36px] lg:text-[40px] color-green">
+      <div className="flex flex-col md:p-6  w-full">
+        <div className="px-5">
+          <h2 className="text-[36px] sm:text-[40px] md:text-[45px] lg:text-[64px] color-green lato font-[800]">
             Let&apos;s dive deeper
           </h2>
-          <p className="lato text-[8px] sm:text-[14px] md:text-[18px] font-medium color-black">
-            Providing us with additional information will enable us to formulate a smarter interview.
+          <p className="lato text-[10px] sm:text-[20px] md:text-[24px] font-medium  color-black ">
+            Providing us with additional information will enable us to formulate
+            a smarter interview.
           </p>
         </div>
-        <div className="mt-2 border p-[15px] sm:p-[20px] lg:p-[25px] rounded-[20px]">
-          <form className="w-full space-y-3">
+        <div className=" mt-3 border p-[20px] sm:p-[30px] lg:p-[40px] rounded-[30px]">
+          <form className="w-full space-y-4">
             <div>
-              <label className="block color-black text-[10px] sm:text-[14px] md:text-[16px] font-medium inter">
+              <label className="block color-black text-[11px] sm:text-[22px] md:text-[22px] font-medium inter">
                 About Company
               </label>
               <textarea
                 name="aboutCompany"
                 value={formData.aboutCompany}
                 onChange={handleChange}
-                className="mt-1 p-1.5 w-full h-20 border rounded-md outline-none bg-[#D9EBEC]"
+                className="mt-1 p-2 w-full h-24 border rounded-[15px] outline-none bg-[#D9EBEC]"
               ></textarea>
             </div>
             <div>
-              <label className="block color-black text-[10px] sm:text-[14px] md:text-[16px] font-medium inter">
+              <label className="block color-black text-[20px] sm:text-[22px] md:text-[22px] font-medium inter">
                 Company Values
               </label>
               <textarea
                 name="companyValues"
                 value={formData.companyValues}
                 onChange={handleChange}
-                className="mt-1 p-1.5 w-full h-20 border rounded-md outline-none bg-[#D9EBEC]"
+                className="mt-1 p-2 w-full h-24 border rounded-[15px] outline-none bg-[#D9EBEC]"
               ></textarea>
             </div>
             <div className="flex justify-between">
-              <Button to="/signup_two">Back</Button>
+              <Button to="/signup_one">Back</Button>
               <Button to="/add_job">Get started</Button>
             </div>
           </form>

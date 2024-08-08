@@ -377,7 +377,7 @@ function CandidateDetail() {
           {/* <div className="flex items-center max-md:w-[88vw] space-x-4 border p-2 shadow-lg w-fit rounded-[30px]">
             <audio controls>
               <source
-                src="https://www.soundjay.com/button/beep-01a.mp3"
+                src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
                 type="audio/mpeg"
               />
               Your browser does not support the audio element.

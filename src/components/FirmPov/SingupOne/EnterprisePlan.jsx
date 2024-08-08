@@ -26,12 +26,14 @@ const EnterprisePlan = () => {
   
   return (
     <>
-      <div className="max-w-[1500px] px-[20px] sm:px-[40px] lg:px-[60px] mx-auto mt-[40px]  flex items-center justify-center">
-        <div className="flex flex-col md:flex-row md:p-6 bg-white rounded-lg  w-full">
+      <div className="max-w-[1500px] px-[20px] sm:px-[40px] lg:px-[60px] mx-auto mt-[40px] flex items-center justify-center">
+        <div className="flex flex-col md:flex-row md:p-6 bg-white rounded-lg w-full">
           <div className="md:w-1/2 md:p-6 lg:p-10">
-            <h2 className="text-[36px] sm:text-[40px] md:text-[45px] lg:text-[55px] color-green lato font-extralight">
-              Enterprise Plan
+            <h2 className="text-[36px] sm:text-[40px] md:text-[45px] lg:text-[64px] color-green lato font-[800]">
+              Thank you!
             </h2>
+
+            <h6 className="lato text-[24px] font-bold my-[30px] text-[#000000]">Welcome to </h6>
             <ul className="list-inside space-y-4 lato text-[16px] list-none mt-[30px] sm:mt-[40px]">
               <li className="sm:mb-[20px] md:mb-[40px]">
                 <strong>Discounted Pricing:</strong> On-demand pricing for all
@@ -55,7 +57,7 @@ const EnterprisePlan = () => {
           <div className="md:w-1/2 p-6 mt-4 md:mt-0 lg:p-10 border border-[#0000001c] rounded-xl">
             <form className="space-y-4">
               <div>
-                <label className="block color-black lato text-[16px]">
+                <label className="block text-black lato text-[16px]">
                   Full name
                 </label>
                 <input
@@ -67,7 +69,7 @@ const EnterprisePlan = () => {
                 />
               </div>
               <div>
-                <label className="block color-black lato text-[16px]">
+                <label className="block text-black lato text-[16px]">
                   Work email
                 </label>
                 <input
@@ -79,7 +81,7 @@ const EnterprisePlan = () => {
                 />
               </div>
               <div>
-                <label className="block color-black lato text-[16px]">
+                <label className="block text-black lato text-[16px]">
                   Company name
                 </label>
                 <input
@@ -92,19 +94,26 @@ const EnterprisePlan = () => {
               </div>
               <div className="flex space-x-4">
                 <div className="w-1/2">
-                  <label className="block color-black lato text-[16px]">
+                  <label className="block text-black lato text-[16px]">
                     Location
                   </label>
-                  <input
-                    type="text"
+                  <select
                     name="location"
                     value={formData.location}
                     onChange={handleChange}
                     className="mt-1 p-2 w-full border bg-[#D9EBEC] rounded-[24px] outline-none"
-                  />
+                  >
+                    <option value="" disabled>Select location</option>
+                    <option value="USA">USA</option>
+                    <option value="Canada">Canada</option>
+                    <option value="UK">UK</option>
+                    <option value="Germany">Germany</option>
+                    <option value="Australia">Australia</option>
+                    {/* Add more options as needed */}
+                  </select>
                 </div>
                 <div className="w-1/2">
-                  <label className="block color-black lato text-[16px]">
+                  <label className="block text-black lato text-[16px]">
                     Industry
                   </label>
                   <select
@@ -126,7 +135,7 @@ const EnterprisePlan = () => {
                     name="industry"
                     value={formData.industry}
                     onChange={handleChange}
-
+                    className="mt-1 p-2 w-full border bg-[#D9EBEC] rounded-[24px] outline-none"
                   />
                 </div>
               </div>

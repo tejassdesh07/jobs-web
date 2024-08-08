@@ -31,7 +31,7 @@ const SignInJobListings = () => {
     <div className="flex w-full">
       <div className=""> {/* Adjust width if necessary */}</div>
       <div className="flex flex-col w-full p-6 bg-white rounded-lg mx-auto">
-        <h2 className="font-extrabold color-green text-[30px] md:text-[55px] lato">
+        <h2 className="text-[36px] sm:text-[40px] md:text-[45px] lg:text-[64px] color-green lato font-[800]">
           Job Listings
         </h2>
         <p className="text-[24px] lato font-medium text-black">

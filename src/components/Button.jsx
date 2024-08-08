@@ -5,7 +5,7 @@ const Button = ({ to, children , ...props }) => {
   return (
     <NavLink
       to={to}
-      className="px-5 py-2 whitespace-nowrap   border rounded-[15px] shadow-md text-[14px]  font-medium text-center flex items-center justify-center  text-white bg-[#007A7E] "
+      className="px-6 py-2   border rounded-[15px] shadow-md text-[13px] sm:text-[17px] md:text-[19px] lg:text-[20px] font-medium text-center block   text-white bg-[#007A7E] "
       aria-current="page"
       {...props}
     >
